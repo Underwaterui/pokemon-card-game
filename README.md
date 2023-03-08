@@ -7,4 +7,4 @@ made with ai
 
 
 
-download with the zip download
+download with the zip file
