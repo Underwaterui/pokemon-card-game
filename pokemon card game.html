@@ -1,0 +1,101 @@
+<!doctype html><html><head></head><body><!DOCTYPE html>
+<html>
+
+<head>
+	<title>Pokémon Card Game</title>
+	<style type="text/css">
+		body {
+			background-color: #4d4c4c;
+		}
+
+		.card {
+			width: 200px;
+			height: 250px;
+			background-color: #f1f1f1;
+			border-radius: 10px;
+			margin: 20px;
+		}
+
+		.card>div {
+			width: 100%;
+			text-align: center;
+			font-weight: bold;
+			font-size: 20px;
+			margin-bottom: 5px;
+		}
+
+		img {
+			width: 150px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Pokémon Card Game</h1>
+	<div id="cards">
+		<!-- here the cards will be added -->
+	</div>
+	<div>
+		Score: <span id="score">0</span>
+	</div>
+	<div>
+		Highest card: <span id="highest-card">None</span>
+	</div>
+	<script type="text/javascript">
+		const pokemons = [
+        {
+          name: "Pikachu",
+          value: 5,
+          image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
+        },
+        {
+          name: "Charmander",
+          value: 10,
+          image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png"
+        },
+        {
+          name: "Squirtle",
+          value: 8,
+          image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
+        },
+        {
+          name: "Bulbasaur",
+          value: 6,
+          image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+        }
+      ];
+
+      // Generate the cards
+      let cardsHTML = "";
+      pokemons.forEach(pokemon => {
+        cardsHTML += `
+          <div class='card' onclick="pickCard('${pokemon.name}', ${pokemon.value})">
+            <div>${pokemon.name}</div>
+            <img src='${pokemon.image}' />
+          </div>
+        `;
+      });
+      document.getElementById("cards").innerHTML = cardsHTML;
+
+      // Variables to track the game
+      let score = 0;
+      let highestCard = 0;
+      let highestCardName = "None";
+
+      // Function to pick a card
+      function pickCard(name, value) {
+        if (value > highestCard) {
+          highestCard = value;
+          highestCardName = name;
+          score++;
+        } else {
+          score--;
+        }
+        document.getElementById("score").innerHTML = score;
+        document.getElementById("highest-card").innerHTML = highestCardName;
+      }
+	</script>
+</body>
+
+</html></body><html>
